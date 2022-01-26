@@ -6,15 +6,6 @@ const SMA = require('technicalindicators').SMA
 
 const calculateCorrelation = require("calculate-correlation");
 
-// given 4 points: (2,3), (5,3), (4,6) and (1,7)
-const x = [2, 5, 4, 1];
-const y = [3, 3, 6, 7];
-
-const correlation = calculateCorrelation(x, y);
-
-console.log(correlation); // logs -0.442807443
-console.log(typeof correlation); // logs number
-
 app.get('/', function(req, res) {
     res.send("Life is a pera");
 });
@@ -28,9 +19,10 @@ function writeJsonFile(file, data) {
     fs.writeFileSync(file, jsonData);
 }
 
-const SaveChartdata = () => datagather.chartdata(30).then((res)=>{
+const SaveChartdata = () => datagather.chartdata(100).then((res)=>{
     writeJsonFile('chartdata.json',res);
 })
+
 
 const readData = ()=> {
     var json = fs.readFileSync('chartdata.json');
@@ -38,12 +30,13 @@ const readData = ()=> {
 }
 const string2int = (array) =>{
     var count = 0 ;
-    for ( var i in array ){
+    for ( var i of array ){
         array[count] = parseFloat(i);
         count = count + 1 ; 
     }
     return array ;
 }
+
 // getchartdata();
 const SMA_calc = () =>{
     var jsondata = readData()
@@ -53,10 +46,13 @@ const SMA_calc = () =>{
 
 const pearsonCorr = () =>{
     var jsondata = readData()
-    const x = [2, 5, 4, 1];
-const y = [3, 3, 6, 7];
+    const x = string2int(jsondata["ILFSL"]);
+    const y = string2int(jsondata["FASFIN"]);
+    console.log({x,y})
 const correlation = calculateCorrelation(x, y);
 console.log(correlation); // logs -0.442807443
 console.log(typeof correlation); // logs number
 }
 
+SaveChartdata();
+//  pearsonCorr()
