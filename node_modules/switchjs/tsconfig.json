@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "noImplicitAny": false,
+        "declaration": true,
+        "sourceMap": true,
+        "importHelpers": true,
+        "lib": [
+            "es2015","es2015.promise"
+        ]
+    }
+}
