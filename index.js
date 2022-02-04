@@ -19,14 +19,15 @@ function writeJsonFile(file, data) {
     fs.writeFileSync(file, jsonData);
 }
 
-const SaveChartdata = () => datagather.chartdata(100).then((res)=>{
+const SaveChartdata = (rangeDays,allintrument, stockname) => 
+    datagather.chartdata(rangeDays,allintrument,stockname).then((res)=>{
     writeJsonFile('chartdata.json',res);
 })
 
 
-const readData = ()=> {
+const readData = (filename)=> {
     var json = fs.readFileSync('chartdata.json');
-    return JSON.parse(json) ;
+    return string2int(JSON.parse(json)) ;
 }
 const string2int = (array) =>{
     var count = 0 ;
@@ -44,6 +45,8 @@ const SMA_calc = () =>{
     console.log(value);
 }
 
+// /////////////////////////////////////////////////////////////////
+// Pearson correlation 
 const pearsonCorr = () =>{
     var jsondata = readData()
     const x = string2int(jsondata["ILFSL"]);
@@ -54,5 +57,10 @@ console.log(correlation); // logs -0.442807443
 console.log(typeof correlation); // logs number
 }
 
-SaveChartdata();
-//  pearsonCorr()
+var allStockNamekArray =  Object.keys(JSON.parse(fs.readFileSync('allstock.json')))
+
+
+
+// /////////////////////////////////////////////////////
+//  MA 50 vs 200 ( find which stocks having the crossover)
+

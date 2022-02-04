@@ -7,11 +7,12 @@ const fs = require("fs")
 
 
 
-const chartdata =  async (rangeDays) =>  {
+const chartdata =  async (rangeDays,allintrument, stockname) =>  {
+    const stonkname = allintrument? "All%20Instrument" : stockname ;
     const date = utils.dateformat(rangeDays) ; 
    // console.log(`https://www.dsebd.org/day_end_archive.php?startDate=${date.startday}&endDate=${date.today}&inst=All%20Instrument&archive=data`)
     const response = await axios({
-        url : `https://www.dse.com.bd/day_end_archive.php?startDate=${date.startday}&endDate=${date.today}&inst=All%20Instrument&archive=data` ,
+        url : `https://www.dse.com.bd/day_end_archive.php?startDate=${date.startday}&endDate=${date.today}&inst=${stonkname}&archive=data` ,
         method : 'GET',
     }); 
     const dom2 = new JSDOM(response.data)
