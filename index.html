@@ -1,0 +1,40 @@
+<html>
+    <head>    
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script src="./tabjquery.tablesort.js"></script>
+    </head>
+    <body>
+        <table>   
+        <tr>
+            <th>Name</th>
+            <th>Sm50</th>
+            <th>Sm200</th>
+            <th>Calc</th>
+        </tr>
+            ${html}
+        </table>
+
+        <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+          }
+          
+          td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+          }
+          
+          tr:nth-child(even) {
+            background-color: #dddddd;
+          }
+        </style>
+        <script>
+            $('tr').sort(function(a, b) {
+             [ p1,p2] = [$(a).find('td-calc').html().toUpperCase() , $(b).find('td-calc').html().toUpperCase() ]
+            return (p1 > p2) ?  1 : -1}).appendTo('table');
+        </script>
+        </body>
+</html>`

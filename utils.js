@@ -8,3 +8,10 @@ module.exports.dateformat = (daysNum) => {
         startday : `${then[2]}-${then[0]>=10?then[0]:`0${then[0]}`}-${(then[1]>=10)? then[1]: `0${then[1]}`}` 
     }
 }
+
+
+const fs = require('fs');
+module.exports.writeJsonFile = (file, data) => {
+    let jsonData = JSON.stringify(data);
+    fs.writeFileSync(file, jsonData);
+}

@@ -397,12 +397,6 @@
   "WMSHIPYARD": 13.4,
   "YPL": 21.9,
   "ZAHEENSPIN": 8.9,
-  "ZAHINTEX": [
-    7.2,
-    114.1
-  ],
-  "ZEALBANGLA": [
-    114.1,
-    114.1
-  ]
+  "ZAHINTEX": 7.2  ,
+  "ZEALBANGLA":  114.1
 }
